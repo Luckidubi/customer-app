@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">CRM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+    {% if request.user.is_staff %}
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'products' %}">Products</a>
+      </li>
+
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'settings' %}">Settings</a>
+      </li>
+      {% endif %}
+
+       {% comment %} <li class="nav-item">
+        <a class="nav-link" href="customer/<str:pk>">Customer</a> {% endcomment %}
+      </li>
+
+
+    </ul>
+
+
+  </div>
+
+<span id="navbarNav">
+  <ul class="navbar-nav">
+  <li class="nav-item mx-2">
+      <span class="nav-link">Hello, <strong>{{request.user}}</strong></span>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+    </ul>
+    </span>
+</nav>
