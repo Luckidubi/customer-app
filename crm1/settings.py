@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'vq82@(zi6ryp2n!vf8mt=m)h^w!3w(*&y+q-whbb*=+ezx3-@9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['luckidubi-crm.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
     'django_filters',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,13 @@ WSGI_APPLICATION = 'crm1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'luckidubi',
+        'PASSWORD': 'Manchi10',
+        'HOST': 'database-2.c2xfuj6qaa7c.us-west-2.rds.amazonaws.com',
+        'PORT': '5432'
+
     }
 }
 
@@ -137,3 +143,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'your email'
 EMAIL_HOST_PASSWORD = 'your password'
+
+AWS_ACCESS_KEY_ID = 'AKIAYIZ3QO6RPM5ONFHW'
+AWS_SECRET_ACCESS_KEY = 'sFeLcpqaXeJzbH/I9zKGd9YjLWuEK2vlOiTFkdaN'
+AWS_STORAGE_BUCKET_NAME = 'luckidubi-crm1-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
